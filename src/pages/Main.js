@@ -7,6 +7,24 @@ import Page2 from "../Components/Page2";
 import Project from "../Components/Project";
 import About from "../Components/About";
 
+// Mario images to preload
+const marioImages = [
+  "./images/mario/mario-stand-right.gif",
+  "./images/mario/mario-stand-left.gif",
+  "./images/mario/mario-run-right.gif",
+  "./images/mario/mario-run-left.gif",
+  "./images/mario/mario-jump-right.png",
+  "./images/mario/mario-jump-left.png"
+];
+
+// Preload function
+const preloadImages = (imageArray) => {
+  imageArray.forEach((imageUrl) => {
+    const img = new Image();
+    img.src = imageUrl;
+  });
+};
+
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [marioImage, setMarioImage] = useState(
@@ -17,26 +35,42 @@ export default function Main() {
   const [hitBox, setHitBox] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isMovementLocked, setIsMovementLocked] = useState(false);
   const totalSlides = 5;
   const currentYear = new Date().getFullYear();
 
+  // Preload images on component mount
+  useEffect(() => {
+    preloadImages(marioImages);
+    setImagesLoaded(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
+      // If movement is locked, ignore all key presses
+      if (isMovementLocked) {
+        return;
+      }
+
       if (event.key === "ArrowRight") {
         // Only move to the next slide if it's not the last slide
         if (currentSlide < totalSlides - 1) {
           setMarioDirection("right");
           setCurrentSlide((prev) => prev + 1);
+          lockMovement();
         }
       } else if (event.key === "ArrowLeft") {
         // Only move to the previous slide if it's not the first slide
         if (currentSlide > 0) {
           setMarioDirection("left");
           setCurrentSlide((prev) => prev - 1);
+          lockMovement();
         }
       } else if (event.key === " ") {
         if (currentSlide === 2 && !isJumping) {
           setIsJumping(true);
+          setIsMovementLocked(true);
           setMarioImage(`./images/mario/mario-jump-${marioDirection}.png`);
           setTimeout(() => setHitBox(true), 200);
           setTimeout(() => {
@@ -44,34 +78,49 @@ export default function Main() {
             setMarioImage(`./images/mario/mario-stand-${marioDirection}.gif`);
             setHitBox(false);
             setShowSkills((prev) => !prev);
+            setIsMovementLocked(false);
           }, 400);
         }
       }
+    };
+
+    // Function to lock movement during transitions
+    const lockMovement = () => {
+      setIsMovementLocked(true);
+      // Release the movement lock after the transition completes
+      setTimeout(() => {
+        setIsMovementLocked(false);
+      }, 2500); // Slightly longer than your transition time to ensure completion
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentSlide, isJumping, totalSlides, marioDirection]);
+  }, [currentSlide, isJumping, totalSlides, marioDirection, isMovementLocked]);
 
   const handleSlideChange = (index) => {
     setMarioImage(`./images/mario/mario-run-${marioDirection}.gif`);
     setTransitioning(true);
+    setIsMovementLocked(true);
+    
     setTimeout(() => {
       setMarioImage(`./images/mario/mario-stand-${marioDirection}.gif`);
       setTransitioning(false);
+      setIsMovementLocked(false);
     }, 2400);
     setCurrentSlide(index);
   };
 
   return (
     <div className="carousel-container">
-      <img
-        src={marioImage}
-        alt="mario"
-        className={`mario ${isJumping ? "jumping" : ""}`}
-      />
+      {imagesLoaded && (
+        <img
+          src={marioImage}
+          alt="mario"
+          className={`mario ${isJumping ? "jumping" : ""}`}
+        />
+      )}
       <p className="footer">
         Copyright© {currentYear} Tejasav Singh | All right reserved.
       </p>

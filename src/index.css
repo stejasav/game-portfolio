@@ -619,7 +619,7 @@ body {
 }
 
 .square1 {
-  width: 220px;
+  width: 120px;
   height: 220px;
   border: 2px solid #0188fb;
   transform: rotate(45deg);
@@ -629,11 +629,6 @@ body {
 }
 
 .square2 {
-  width: 220px;
-  height: 220px;
-  border: 2px solid #0188fb;
-  top: 8%;
-  right: 0;
   animation: rotateAnimation 30s linear reverse infinite;
 }
 
@@ -698,7 +693,7 @@ body {
   }
   
   .page1-container.mobile .floating-element {
-    opacity: 0.21;
+    opacity: 0.34;
   }
   
   .page1-container.mobile .square1 {
@@ -1215,7 +1210,7 @@ body {
   .contact-containter {
     padding: 20px;
     max-width: 90%;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   .input-field {
