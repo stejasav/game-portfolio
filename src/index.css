@@ -619,7 +619,7 @@ body {
 }
 
 .square1 {
-  width: 120px;
+  width: 220px;
   height: 220px;
   border: 2px solid #0188fb;
   transform: rotate(45deg);
@@ -629,6 +629,11 @@ body {
 }
 
 .square2 {
+  width: 220px;
+  height: 220px;
+  border: 2px solid #0188fb;
+  top: 8%;
+  right: 0;
   animation: rotateAnimation 30s linear reverse infinite;
 }
 
