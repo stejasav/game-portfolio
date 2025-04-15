@@ -65,16 +65,10 @@ export default function Navbar(){
       </div> */}
 
       <div className="specifications">
-        <p className=" text-white">
-          I'm a,
-        </p>
+        <p className=" text-white"> I'm a, </p>
         <h1>
-          <span className="text-4xl">
-            {text}
-          </span>
-          <span className="font-bold text-4xl">
-            <Cursor/>
-          </span>
+          <span className="typewriter-text"> {text} </span>
+          <span className="font-bold text-4xl"> <Cursor/> </span>
         </h1>
       </div>
 

@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Contact from "./Contact";
-import Page1 from "./Page1";
-import Page2 from "./Page2";
-import Project from "./Project";
-import About from "./About";
+import Contact from "../Components/Contact";
+import Page1 from "../Components/Page1";
+import Page2 from "../Components/Page2";
+import Project from "../Components/Project";
+import About from "../Components/About";
 
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [marioImage, setMarioImage] = useState("./images/mario/mario-stand-right.gif");
+  const [marioImage, setMarioImage] = useState(
+    "./images/mario/mario-stand-right.gif"
+  );
   const [marioDirection, setMarioDirection] = useState("right");
-  const [isJumping,setIsJumping] = useState(false);
+  const [isJumping, setIsJumping] = useState(false);
   const [hitBox, setHitBox] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
   const totalSlides = 5;
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -32,16 +35,16 @@ export default function Main() {
           setCurrentSlide((prev) => prev - 1);
         }
       } else if (event.key === " ") {
-        if(currentSlide === 2 && !isJumping){
-          setIsJumping(true)
-          setMarioImage(`./images/mario/mario-jump-${marioDirection}.png`)
+        if (currentSlide === 2 && !isJumping) {
+          setIsJumping(true);
+          setMarioImage(`./images/mario/mario-jump-${marioDirection}.png`);
           setTimeout(() => setHitBox(true), 200);
-          setTimeout(()=>{
+          setTimeout(() => {
             setIsJumping(false);
             setMarioImage(`./images/mario/mario-stand-${marioDirection}.gif`);
             setHitBox(false);
-            setShowSkills(prev => !prev);
-          },400);
+            setShowSkills((prev) => !prev);
+          }, 400);
         }
       }
     };
@@ -64,27 +67,49 @@ export default function Main() {
 
   return (
     <div className="carousel-container">
-      <img src={marioImage} alt="mario" className={`mario ${isJumping ? "jumping" : ""}`} />
-      <p className="footer">Copyright© 2024 Tejasav Singh | All right reserved.</p>
+      <img
+        src={marioImage}
+        alt="mario"
+        className={`mario ${isJumping ? "jumping" : ""}`}
+      />
+      <p className="footer">
+        Copyright© {currentYear} Tejasav Singh | All right reserved.
+      </p>
       <div className="flex mr-12 mb-3 media">
         <abbr title="LinkedIn">
           <a href="https://www.linkedin.com/in/tejasav-singh-63b618276/">
-            <img src="./images/socials/linkedin-logo-white.png" alt="linkdin-logo" className="linkedin-logo"/>
+            <img
+              src="./images/socials/linkedin-logo-white.png"
+              alt="linkdin-logo"
+              className="social-icon linkedin-logo"
+            />
           </a>
         </abbr>
         <abbr title="GitHub">
           <a href="https://github.com/stejasav">
-            <img src="./images/socials/github-logo.png" alt="github-logo" className="github-logo"/>
+            <img
+              src="./images/socials/github-logo.png"
+              alt="github-logo"
+              className="social-icon github-logo"
+            />
           </a>
         </abbr>
         <abbr title="Instagram">
           <a href="https://www.instagram.com/stejasav/">
-            <img src="./images/socials/instagram-logo-white.png" alt="instagram-logo" className="instagram-logo"/>
+            <img
+              src="./images/socials/instagram-logo-white.png"
+              alt="instagram-logo"
+              className="social-icon instagram-logo"
+            />
           </a>
         </abbr>
         <abbr title="Gmail">
           <a href="Mailto: tejasavsingh2517@gmail.com">
-            <img src="./images/socials/gmail-logo-white.png" alt="linkdin-logo" className="gmail-logo"/>
+            <img
+              src="./images/socials/gmail-logo-white.png"
+              alt="linkdin-logo"
+              className="social-icon gmail-logo"
+            />
           </a>
         </abbr>
       </div>
@@ -101,18 +126,23 @@ export default function Main() {
           <Page1 transitioning={transitioning} />
         </div>
         <div>
-          <About transitioning={transitioning}/>
+          <About transitioning={transitioning} />
         </div>
         <div id="skill">
-          <Page2 hitBox={hitBox} showSkills={showSkills} transitioning={transitioning} isJumping={isJumping}/>
+          <Page2
+            hitBox={hitBox}
+            showSkills={showSkills}
+            transitioning={transitioning}
+            isJumping={isJumping}
+          />
         </div>
         <div id="projects">
-          <Project transitioning={transitioning}/>
+          <Project transitioning={transitioning} />
         </div>
         <div id="contact">
-          <Contact transitioning={transitioning}/>
+          <Contact transitioning={transitioning} />
         </div>
       </Carousel>
     </div>
   );
-}  
+}

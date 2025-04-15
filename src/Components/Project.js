@@ -1,41 +1,27 @@
 import React from "react";
-
+ 
 export default function Project({transitioning}){
 
   return(
-    <div>
-      <div className="bg-1 text-white project">
-        {!transitioning && (<img src="./images/keys/right-arrow.svg" alt="right-arrow" className="right-arrow3" />)}
-        {!transitioning && (<img src="./images/keys/right-arrow.svg" alt="left-arrow" className="left-arrow3" />)}
-        
-        <h1>PROJECTS</h1>
-        <section className="project-container">
-          <div className="project-preview m-7 -mt-1 -ml-1">
-            <div className="p-5">
-              <div className="mb-3 relative">
-                  <img src="./images/projects-ss/youtube-clone.png" alt="youtube clone" className="w-full rounded-2xl" />
-                  <a href="https://github.com/stejasav/YouTube_Clone" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
-                    <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
-                  </a>
-              </div>
-              <div className="project-info">
-                <p className="project-title">YouTube Clone</p>
-                <p className="project-about">This YouTube clone, built with HTML and CSS, replicates the homepage layout with a responsive design and video thumbnails, helping me practice styling and layout skills.</p>
-                <div className="languages-used">
-                  <p>HTML</p>
-                  <p>CSS</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="project-page">
+      <div className="bg-1 text-white project overflow-hidden">
+        {!transitioning && (
+          <>
+            <img src="./images/keys/right-arrow.svg" alt="right-arrow" className="right-arrow3" />
+            <img src="./images/keys/right-arrow.svg" alt="left-arrow" className="left-arrow3" />
+          </>
+        )}
 
-          <div className="project-preview m-7 -mt-1 -ml-1">
-            <div className="p-5">
-              <div className="mb-3 relative">
-                  <img src="./images/projects-ss/rock-paper-scissor.png" alt="rock-paper-scissors" className="w-full rounded-2xl" />
-                  <a href="https://github.com/stejasav/Rock-Paper-Scissor" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
-                    <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
-                  </a>
+        <h1 className="project-heading">PROJECTS</h1>
+        <section className="project-container">
+
+          <div className="project-preview">
+            <div className="project-inner">
+              <div className="project-image-container">
+                <img src="./images/projects-ss/rock-paper-scissor.png" alt="rock-paper-scissors" className="project-image" />
+                <a href="https://github.com/stejasav/Rock-Paper-Scissor" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
+                  <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
+                </a>
               </div>
               <div className="project-info">
                 <p className="project-title">Rock Paper Scissors</p>
@@ -49,13 +35,59 @@ export default function Project({transitioning}){
             </div>
           </div>
 
-          <div className="project-preview m-7 -mt-1 -ml-1">
-            <div className="p-5">
-              <div className="mb-3 relative">
-                  <img src="./images/projects-ss/meme-generator.png" alt="meme-generator" className="w-full rounded-2xl" />
-                  <a href="https://github.com/stejasav/Meme-Generator" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
+          <div className="project-preview ">
+            <div className="project-inner">
+              <div className="project-image-container">
+                  <img src="./images/projects-ss/health-guardian-1.png" alt="health-guardian" className="project-image" />
+                  <a href="https://github.com/stejasav" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
                     <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
                   </a>
+              </div>
+              <div className="project-info">
+                <p className="project-title">Health Guardian</p>
+                <p className="project-about">Health Guardian is a healthcare web application built with React.js that helps users identify possible diseases based on their symptoms. It also allows users to find nearby hospitals and doctors, chat with an AI doctor, and get estimated treatment costs.</p>
+                <div className="languages-used">
+                  <p>HTML/CSS</p>
+                  <p>JavaScript</p>
+                  <p>ReactJS</p>
+                  <p>Python</p>
+                  <p>ML</p>
+                  <p>Java</p>
+                  <p>MongoDB</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="project-preview">
+            <div className="project-inner">
+              <div className="project-image-container">
+                <img src="./images/projects-ss/kplr.png" alt="KPLR" className="project-image" />
+                <a href="https://github.com/stejasav/KPLR" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
+                  <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
+                </a>
+              </div>
+              <div className="project-info">
+                <p className="project-title">KPLR</p>
+                <p className="project-about">KPLR is a login-based web application built with React.js, featuring user authentication and a dashboard for secure access. It allows users to create accounts, log in, and navigate a personalized interface.</p>
+                <div className="languages-used">
+                  <p>HTML</p>
+                  <p>CSS</p>
+                  <p>JavaScript</p>
+                  <p>React</p>
+                  <p>RestAPI</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="project-preview">
+            <div className="project-inner">
+              <div className="project-image-container">
+                <img src="./images/projects-ss/meme-generator.png" alt="meme-generator" className="project-image" />
+                <a href="https://github.com/stejasav/Meme-Generator" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
+                  <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
+                </a>
               </div>
               <div className="project-info">
                 <p className="project-title">Meme Generator</p>

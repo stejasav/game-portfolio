@@ -1,9 +1,11 @@
+// Hero.jsx with mobile responsiveness
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 
 export default function Hero() {
   useEffect(() => {
-    gsap.fromTo(".game-on",
+    gsap.fromTo(
+      ".game-on",
       {
         x: -450,
       },
@@ -14,7 +16,8 @@ export default function Hero() {
         ease: "power3.out",
       }
     );
-    gsap.fromTo(".my-profile",
+    gsap.fromTo(
+      ".my-profile",
       {
         opacity: 0,
         y: 450,
@@ -27,7 +30,8 @@ export default function Hero() {
         ease: "power3.out",
       }
     );
-    gsap.fromTo(".socials img",
+    gsap.fromTo(
+      ".socials img",
       {
         opacity: 0,
         x: 450,
@@ -42,14 +46,51 @@ export default function Hero() {
         ease: "power3.out",
       }
     );
+
+    gsap.fromTo(
+      [".scroll-up-img-mobile-view-right", ".scroll-up-img-mobile-view-left"],
+      {
+        opacity: 0,
+        y: 50, // Starts slightly below
+        scale: 0.8, // Starts smaller for a subtle effect
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        delay: 0.5,
+        stagger: 0.2,
+        ease: "power3.out",
+        onComplete: () => {
+          gsap.to(
+            [ ".scroll-up-img-mobile-view-right", ".scroll-up-img-mobile-view-left"],
+            {
+              y: -12,
+              repeat: -1,
+              yoyo: true,
+              duration: 0.5,
+              ease: "easeInOut"
+            }
+          );
+        },
+      }
+    );
+
   }, []);
 
   return (
     <div className="p-3 pb-0 hero">
-        <div className="game-on">
-          <h2>PRESS</h2>
-          <img src="./images/space-bar.svg" alt="space bar" className=" w-40" />
-        </div>
+      <img src="./images/keys/scroll-up.png" alt="scroll up" className="scroll-up-img-mobile-view-right" />
+      <img src="./images/keys/scroll-up.png" alt="scroll up" className="scroll-up-img-mobile-view-left" />
+      <div className="game-on">
+        <h2>PRESS</h2>
+        <img
+          src="./images/keys/space-bar.svg"
+          alt="space bar"
+          className="w-40 md:w-40"
+        />
+      </div>
 
       <div className="my-profile">
         <img
@@ -57,7 +98,7 @@ export default function Hero() {
           alt="my-photo"
           className="profile-pic"
         />
-        <img src="./images/blue_ring1.png" alt="ring" className="ring" />
+        <img src="./images/blue_ring.png" alt="ring" className="ring" />
       </div>
 
       <div className="socials">
