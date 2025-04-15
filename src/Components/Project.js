@@ -39,7 +39,7 @@ export default function Project({transitioning}){
             <div className="project-inner">
               <div className="project-image-container">
                   <img src="./images/projects-ss/health-guardian-1.png" alt="health-guardian" className="project-image" />
-                  <a href="https://github.com/stejasav" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
+                  <a href="https://github.com/stejasav/Health-Guardian" target="_blank" rel="noopener noreferrer" className="github-link-wrapper">
                     <img src="./images/skills/github-logo.png" alt="github logo" className="github-link" />
                   </a>
               </div>
